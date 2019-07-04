@@ -1,4 +1,4 @@
-package cn.edu.hnucm.shop.service;
+ package cn.edu.hnucm.shop.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;

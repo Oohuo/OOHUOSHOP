@@ -36,7 +36,7 @@ public class NewsListServlet extends HttpServlet {
 		
 		NewsService newsService = new NewsService();
 		Page<News> page = newsService.findByPublic(number, size);
-		
+
 		
 		request.setAttribute("newsPage", page);
 		request.getRequestDispatcher("/news_list.jsp").forward(request, response);

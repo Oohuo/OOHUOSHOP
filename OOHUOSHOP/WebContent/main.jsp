@@ -5,8 +5,9 @@
 <html lang="zh-cn">
 <head>
 <jsp:include page="/icd_meta.jsp" />
-<title>哦豁网</title>
+<title>噢豁网 - 噢！我喜欢</title>
 <jsp:include page="/icd_link.jsp" />
+<link rel="shortcut icon" href="//img.alicdn.com/favicon.ico" type="image/x-icon" />	
 </head>
 <body>
 	<jsp:include page="/icd_top.jsp">
@@ -150,7 +151,7 @@
 		<!-- 广告 -->
 		<div class="list">
 			<a target="_blank" href="${ctx}/product_detail?id=4"><img
-				src="./img/banner_ad.jpg" alt=""></a>
+				src="http://localhost:8080/OOHUOSHOP/img/banner_ad.jpg" alt=""></a>
 		</div>
 		<!-- /广告 -->
 	</div>
