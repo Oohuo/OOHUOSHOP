@@ -6,9 +6,35 @@
 <jsp:include page="/icd_meta.jsp" />
 <title>会员-密码修改</title>
 <jsp:include page="/icd_link.jsp" />
+<script language="JavaScript" type="text/JavaScript">
+	function loginCheck() {
+		if (loginForm.verification2.value == "") {
+			alert("验证码不能为空，请输入验证码！");
+			loginForm.verification2.focus();
+			return false;
+		}
+		if (loginForm.verification2.value != loginForm.verification1.value) {
+			alert("验证码错误！");
+			loginForm.verification2.focus();
+			return false;
+		}
+
+		return true;
+
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="/icd_top.jsp"></jsp:include>
+	<%
+		//获取随机数
+		int num1 = (int) (Math.random() * 10);
+		int num2 = (int) (Math.random() * 10);
+		int num3 = (int) (Math.random() * 10);
+		int num4 = (int) (Math.random() * 10);
+
+		String num = num1 + "" + num2 + num3 + num4;
+	%>
 
 	<!-- 主内容 -->
 	<div class="wrapper" style="min-height: 500px">
@@ -30,7 +56,7 @@
 					</div>
 					<div class="panel-body">
 						<form action="${ctx}/member/changepwd" method="post"
-							class="form-horizontal">
+							class="form-horizontal" onsubmit="return loginCheck();">
 							<c:if test="${!empty msg}">
 								<div class="form-group">
 									<div id="formError" class="alert alert-danger">${msg}</div>
@@ -38,23 +64,34 @@
 								<c:remove var="msg" />
 							</c:if>
 							<div class="form-group">
-								<label class="col-xs-2 control-label">当前会员</label>
+								<label class="col-xs-2 control-label">会员名：</label>
 								<div class="col-xs-4">${sessionScope.curr_mbr.mobile}</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label">原密码</label>
+								<label class="col-xs-2 control-label">原密码：</label>
 								<div class="col-xs-4 required">
 									<input type="password" name="pwd" id="pwd" placeholder="请输入原密码"
 										class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label">新密码</label>
+								<label class="col-xs-2 control-label">新密码：</label>
 								<div class="col-xs-4 required">
 									<input type="password" name="pwd2" id="pwd2"
 										placeholder="请输入新密码" class="form-control" />
 								</div>
 							</div>
+							<div class="form-group">
+							<label class="col-xs-2 control-label">验证码： </label>
+									<input name="verification1" type="hidden" value="<%=num%>"  />
+									<input name="verification2" type="text" placeholder="   请输入验证码"
+										style="width: 145px; height: 32px;"> 
+										<img src="http://localhost:8080/OOHUOSHOP/image/blue/<%=num1%>.png" /> 
+										<img src="http://localhost:8080/OOHUOSHOP/image/yellow/<%=num2%>.png" />
+									    <img src="http://localhost:8080/OOHUOSHOP/image/red/<%=num3%>.png" />
+									    <img src="http://localhost:8080/OOHUOSHOP/image/green/<%=num4%>.png" />
+
+								</div>
 							<div class="form-group">
 								<div class="col-xs-2"></div>
 								<div class="col-xs-10">

@@ -80,3 +80,4 @@ function countSum(){
     $('#amount-sum').text(amount);
     $('#price-sum').text(price);
 }
+

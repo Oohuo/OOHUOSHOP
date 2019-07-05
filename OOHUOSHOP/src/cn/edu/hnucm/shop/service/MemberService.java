@@ -246,4 +246,22 @@ public class MemberService {
 		 
 		 return page;
 	}
+	
+	
+	/*
+	 * 加密与解密
+	 * @param paw 密码
+	 */
+	public String encryptionPaw(String paw) {
+		//密钥
+		int cipherCode=200;
+		char[] paw_1=paw.toCharArray();
+		//加密
+		for (int i = 0; i < paw_1.length; i++) {
+			paw_1[i]=(char)(paw_1[i]^cipherCode);
+		}
+			
+		return String.copyValueOf(paw_1);
+	}
+	
 }

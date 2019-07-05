@@ -5,6 +5,23 @@
 <head>
 <jsp:include page="/icd_meta.jsp" />
 <title>哦豁商城-注册会员</title>
+<script language="JavaScript" type="text/JavaScript">
+	function loginCheck() {
+		if (loginForm.verification2.value == "") {
+			alert("验证码不能为空，请输入验证码！");
+			loginForm.verification2.focus();
+			return false;
+		}
+		if (loginForm.verification2.value != loginForm.verification1.value) {
+			alert("验证码错误！");
+			loginForm.verification2.focus();
+			return false;
+		}
+
+		return true;
+
+	}
+</script>
 <jsp:include page="/icd_link.jsp" />
 </head>
 <body>
@@ -25,17 +42,27 @@
 							<strong>欢迎注册成为会员</strong>
 						</div>
 						<div class="panel-body">
-							<form action="${ctx}/member_register" method="post">
+							<form name="loginForm" action="${ctx}/member_register"
+								method="post" onsubmit="return loginCheck();">
 								<c:if test="${!empty msg}">
 									<div class="form-group">
 										<div id="formError" class="alert alert-danger">${msg}</div>
 									</div>
 									<c:remove var="msg" />
 								</c:if>
-								<div class="form-group">
-									<input type="text" name="mobile" id="mobile"
-										placeholder="请输入手机号" class="form-control input-lg">
-								</div>
+								<c:if test="${!empty zhanghao}">
+									<div class="form-group">
+										<input type="text" name="mobile" id="mobile"
+											value="${zhanghao}" placeholder="请输入手机号"
+											class="form-control input-lg">
+									</div>
+								</c:if>
+								<c:if test="${empty zhanghao}">
+									<div class="form-group">
+										<input type="text" name="mobile" id="mobile" value=""
+											placeholder="请输入手机号" class="form-control input-lg">
+									</div>
+								</c:if>
 								<div class="form-group">
 									<input type="password" name="pwd" id="password" value=""
 										placeholder="请输入密码" class="form-control input-lg">
@@ -43,6 +70,24 @@
 								<div class="form-group">
 									<input type="password" name="pwd2" id="password" value=""
 										placeholder="请再输入密码" class="form-control input-lg">
+								</div>
+								<%
+									//获取随机数
+									int num1 = (int) (Math.random() * 10);
+									int num2 = (int) (Math.random() * 10);
+									int num3 = (int) (Math.random() * 10);
+									int num4 = (int) (Math.random() * 10);
+
+									String num = num1 + "" + num2 + num3 + num4;
+								%>
+								<div class="form-group">
+									<input name="verification1" type="hidden" value="<%=num%>" />
+									<input name="verification2" type="text" placeholder="   请输入验证码"
+										style="width: 285px; height: 43px;"> <img
+										src="image/<%=num1%>.png" /> <img src="image/<%=num2%>.png" />
+									<img src="image/<%=num3%>.png" /> <img
+										src="image/<%=num4%>.png" />
+
 								</div>
 
 								<button type="submit" class="btn btn-primary btn-wider btn-lg">注册</button>

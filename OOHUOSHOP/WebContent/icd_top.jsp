@@ -92,7 +92,7 @@
 			<ul class="nav navbar-nav col-xs-9">
 				<li ${param.tag == 'index' ? "class='active'" : ""}><a
 					href="${ctx}/main">首页</a></li>
-				<li><a href="about.jsp">关于我们</a></li>
+				<li><a href="${ctx}/member/about.jsp">关于我们</a></li>
 			</ul>
 		</div>
 	</div>

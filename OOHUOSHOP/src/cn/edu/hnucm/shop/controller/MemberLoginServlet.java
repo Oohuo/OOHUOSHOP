@@ -38,12 +38,13 @@ public class MemberLoginServlet extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		
 		//step2: 业务逻辑处理
-		
-		
 		MemberService service = new MemberService();
 		Member mbr = service.findByMobile(mobile);
 		
-		//step3: 执行跳转
+		//step3: 密码加密
+		pwd=service.encryptionPaw(pwd);
+		
+		//step4: 执行跳转
 		if(mbr != null){
 			if(mbr.getPwd().equals(pwd)){
 				//登录成功

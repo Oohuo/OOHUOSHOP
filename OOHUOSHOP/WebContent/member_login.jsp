@@ -5,10 +5,36 @@
 <head>
 <jsp:include page="/icd_meta.jsp" />
 <title>哦豁商城-会员登录</title>
+<script language="JavaScript" type="text/JavaScript">
+	function loginCheck() {
+		if (loginForm.verification2.value == "") {
+			alert("验证码不能为空，请输入验证码！");
+			loginForm.verification2.focus();
+			return false;
+		}
+		if (loginForm.verification2.value != loginForm.verification1.value) {
+			alert("验证码错误！");
+			loginForm.verification2.focus();
+			return false;
+		}
+
+		return true;
+
+	}
+</script>
 <jsp:include page="/icd_link.jsp" />
 </head>
 <body>
 	<jsp:include page="/icd_top.jsp"></jsp:include>
+	<%
+		//获取随机数
+		int num1 = (int) (Math.random() * 10);
+		int num2 = (int) (Math.random() * 10);
+		int num3 = (int) (Math.random() * 10);
+		int num4 = (int) (Math.random() * 10);
+
+		String num = num1 + "" + num2 + num3 + num4;
+	%>
 
 	<!-- 主内容 -->
 	<div class="wrapper" style="min-height: 500px;">
@@ -25,7 +51,8 @@
 							<strong>已有帐号</strong>
 						</div>
 						<div class="panel-body">
-							<form action="${ctx}/member_login" method="post">
+							<form name="loginForm" action="${ctx}/member_login" method="post"
+								onsubmit="return loginCheck();">
 								<c:if test="${!empty msg}">
 									<div class="form-group">
 										<div id="formError" class="alert alert-danger">${msg}</div>
@@ -39,6 +66,15 @@
 								<div class="form-group">
 									<input type="password" name="pwd" id="pwd" value=""
 										placeholder="请输入密码" class="form-control input-lg">
+								</div>
+								<div class="form-group">
+									<input name="verification1" id="yzm1" type="hidden" value="<%=num%>" />
+									<input name="verification2" type="text" placeholder="   请输入验证码"
+										style="width: 285px; height: 43px;"> <img
+										src="image/blue/<%=num1%>.png" /> <img src="image/yellow/<%=num2%>.png" />
+									<img src="image/red/<%=num3%>.png" /> <img
+										src="image/green/<%=num4%>.png" />
+
 								</div>
 								<button type="submit" class="btn btn-primary btn-wider btn-lg">登录</button>
 								&nbsp; &nbsp; <a href="${ctx}/member_register.jsp">注册</a>&nbsp;

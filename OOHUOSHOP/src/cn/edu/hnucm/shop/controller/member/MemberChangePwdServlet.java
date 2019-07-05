@@ -30,18 +30,19 @@ public class MemberChangePwdServlet extends HttpServlet {
 		
 		
 		//step2: 处理业务逻辑
+		MemberService service = new MemberService();
+		pwd=service.encryptionPaw(pwd);
+		pwd2=service.encryptionPaw(pwd2);
+				
 		//step3: 跳转
 		Member mbr = (Member)request.getSession().getAttribute("curr_mbr");
-		if(mbr.getPwd().equals(pwd)){
+		if(mbr.getPwd().equals(pwd)&&!pwd2.equals("")){
 			mbr.setPwd(pwd2);
-			
-			MemberService service = new MemberService();
 			service.update(mbr);
-			
 			request.getSession().invalidate();
 			response.sendRedirect(request.getContextPath() + "/member_login.jsp");
 		}else{
-			request.setAttribute("msg", "密码修改失败，原密码有误！");
+			request.setAttribute("msg", "密码修改失败，原密码有误或者输入为空！");
 			request.getRequestDispatcher("/member/updatepwd.jsp").forward(request, response);
 		}
 	}

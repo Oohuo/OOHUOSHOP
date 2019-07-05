@@ -195,8 +195,8 @@ a:hover, a:focus {
 #footer {
     border: none;
     padding: 0;
-    background: #ff9933;
-    color: #f1f1f1;
+    background-image: linear-gradient(to right,#ff9000 0,#ff5000 100%);
+    background-repeat: repeat-x;
     height: 90px;
     line-height: 90px;
 }
@@ -297,7 +297,7 @@ a:hover, a:focus {
 	background-image: url("../images/r_top.png");
 	width: 49px;
 	height: 50px;
-	background-color: #ccc;
+	background-color: #ff9933;
 	position: fixed;
 	top: 450px;
 	right: 0px;
