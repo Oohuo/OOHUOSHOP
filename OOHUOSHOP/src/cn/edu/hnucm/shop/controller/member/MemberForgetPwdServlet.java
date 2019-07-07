@@ -33,16 +33,20 @@ public class MemberForgetPwdServlet extends HttpServlet {
 		//System.out.println(111);
 		String mobile = request.getParameter("mobile");
 		String fpwd = request.getParameter("fpwd");
+		
 		MemberService service = new MemberService();
-		//System.out.println(222);
+//		System.out.println(222);
+		fpwd=service.encryptionPaw(fpwd);
 		Member mbr = service.findByMobile(mobile);
 		//System.out.println(333);
 		
 		//System.out.println(mbr.getPwd());
+		
+		System.out.println(fpwd);
 		mbr.setPwd(fpwd);
 		//System.out.println(mbr.getPwd());
 		service.update(mbr);
-		//System.out.println(444);
+//		System.out.println(444);
 		response.sendRedirect(request.getContextPath() + "/member_login.jsp");
 		
 	}

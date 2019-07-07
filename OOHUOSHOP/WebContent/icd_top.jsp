@@ -18,7 +18,7 @@
 				</div>
 			</c:if>
 			<c:if test="${!flag}">
-				<div class="col-xs-5">演示</div>
+				<div class="col-xs-5"></div>
 				<div class="col-xs-4"></div>
 				<div class="col-xs-3" style="text-align: right;">
 					<a href="${ctx}/member_login.jsp">登录</a> <a
@@ -67,7 +67,7 @@
 		<div class="wrapper row">
 			<div class="navbar-header col-xs-3 categories">
 				<div id="title">
-					<i class="icon icon-th-large"></i> 所有商品分类
+					<i class="icon icon-th-large"></i> 主题市场
 				</div>
 				<div id="menu"
 					${param.tag == 'index' ? "" : "style='display: none'"}>

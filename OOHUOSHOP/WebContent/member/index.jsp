@@ -48,23 +48,24 @@
 							<c:forEach items="${page.items}" var="ord">
 								<tr>
 									<td class="text-center">${ord.id}</td>
-									<td class="text-left"><c:forEach items="${ord.items}"
+									<td class="text-center"><c:forEach items="${ord.items}"
 											var="item" varStatus="vs">
 											<c:if test="${vs.index >0}">
 												<br />
 											</c:if>
 											<a href="${ctx}/product_detail?id=${item.product.id}">${item.product.name}</a> x ${item.amount}
 				            </c:forEach></td>
-									<td class="text-center">${ord.total_amount}</td><!-- 数量 -->
-									<td class="text-right"><fmt:formatNumber
-											value="${ord.payment_price}" pattern="￥#,##0.00" /></td><!-- 金额 -->
+									<td class="text-center">${ord.total_amount}</td>
+									<!-- 数量 -->
+									<td class="text-center"><fmt:formatNumber
+											value="${ord.payment_price}" pattern="￥#,##0.00" /></td>
+									<!-- 金额 -->
 									<td class="text-center">下单时间： <fmt:formatDate
-											value="${ord.create_time}" pattern="yyyy-MM-dd HH:mm" /><!-- 下单时间 -->
-											 <c:if
-											test="${empty ord.delivery_time}">
+											value="${ord.create_time}" pattern="yyyy-MM-dd HH:mm" />
+										<!-- 下单时间 --> <c:if test="${empty ord.delivery_time}">
 											发货时间：<fmt:formatDate value="${ord.delivery_time}"
 												pattern="yyyy-MM-dd HH:mm" />
-												out.print(${ord.create_time});
+												${ord.create_time};
 										</c:if> <c:if test="${empty ord.end_time}">
 											完成时间：<fmt:formatDate value="${ord.end_time}"
 												pattern="yyyy-MM-dd HH:mm" />
@@ -80,14 +81,13 @@
 											<c:when test="${ord.status==-1}">已取消</c:when>
 										</c:choose>
 									</td>
-									<td class="text-right">${ord.remark}</td>
-									<td class="text-center"><a
-										href="${ctx}/member/orders/detail?id=${ord.id}">详情</a> <c:if
-											test="${ord.status==4}" var="flag">
+									<td class="text-center">${ord.remark}</td>
+									<td class="text-center"><c:if test="${ord.status==4}">
 											<a href="${ctx}/member/orders/status?id=${ord.id}&status=5">确认收货</a>
-										</c:if> <c:if test="${ord.status==3}" var="flag">
+										</c:if> <c:if test="${ord.status==2||ord.status==3}">
 											<a href="${ctx}/member/orders/status?id=${ord.id}&status=-1">取消订单</a>
-										</c:if>
+										</c:if></td>
+
 								</tr>
 							</c:forEach>
 						</tbody>

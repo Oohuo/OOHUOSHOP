@@ -47,7 +47,7 @@
 		<div id="news" class="col-xs-3" style="padding: 0">
 			<div class="panel">
 				<div class="panel-heading">
-					<span style="font-size: 16px">优惠快讯</span> <a
+					<span style="font-size: 16px">淘宝头条</span> <a
 						href="${ctx}/news/list" class="pull-right" style="margin-top: 4px">更多
 						<i class="icon-angle-right"></i>
 					</a>
@@ -150,8 +150,8 @@
 		<!-- /第3行 -->
 		<!-- 广告 -->
 		<div class="list">
-			<a target="_blank" href="${ctx}/product_detail?id=4"><img
-				src="http://localhost:8080/OOHUOSHOP/img/banner_ad.jpg" alt=""></a>
+			<a target="_blank" href="${ctx}/product_detail?id=5">
+			<img src="${ctx}/img/banner_ad.jpg" alt=""></a>
 		</div>
 		<!-- /广告 -->
 	</div>

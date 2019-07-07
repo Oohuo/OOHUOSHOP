@@ -84,9 +84,9 @@
 									<input name="verification1" type="hidden" value="<%=num%>" />
 									<input name="verification2" type="text" placeholder="   请输入验证码"
 										style="width: 285px; height: 43px;"> <img
-										src="image/<%=num1%>.png" /> <img src="image/<%=num2%>.png" />
-									<img src="image/<%=num3%>.png" /> <img
-										src="image/<%=num4%>.png" />
+										src="image/blue/<%=num1%>.png" /> <img src="image/yellow/<%=num2%>.png" />
+									<img src="image/red/<%=num3%>.png" /> <img
+										src="image/green/<%=num4%>.png" />
 
 								</div>
 
